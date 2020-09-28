@@ -1,5 +1,7 @@
 package pages;
 
-public abstract class BasicPage {
+import org.openqa.selenium.WebDriver;
 
+public abstract class BasicPage {
+	private WebDriver driver;
 }
