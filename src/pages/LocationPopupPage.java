@@ -53,8 +53,8 @@ public class LocationPopupPage extends BasicPage {
 	}
 	
 	
-	public void clickSubmit() {
-		getClose().submit();
+	public void clickClose() {
+		getClose().click();
 	}
 	
 }
