@@ -8,14 +8,6 @@ public abstract class BasicPage {
 	public BasicPage(WebDriver driver) {
 		this.driver = driver;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
 	
 }
