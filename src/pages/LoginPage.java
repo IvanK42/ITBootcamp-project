@@ -5,14 +5,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class LoginPage extends BasicPage {
-
-	private WebDriver driver;
-	
-	
+			
 	public LoginPage(WebDriver driver) {
-			this.driver = driver;
+		super(driver);
 	}
-	
+
 	public WebElement getEmail() {
 			return this.driver.findElement(By.xpath("//*[@id=\"frm_fat_id_frmLogin\"]/fieldset[1]/input"));
 	}

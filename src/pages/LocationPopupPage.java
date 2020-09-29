@@ -7,15 +7,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LocationPopupPage extends BasicPage {
-	private WebDriver driver;
 	private JavascriptExecutor js = (JavascriptExecutor) driver;
 
 	
 	
 	public LocationPopupPage(WebDriver driver) {
-		this.driver = driver;
+		super(driver);
 	}
-	
+
+
 	public WebElement getHeaderLocation() {
 		return this.driver.findElement(By.xpath("//*[@id=\"header\"]/div[1]/div/div/div[1]/div/a"));
 	}
@@ -48,7 +48,7 @@ public class LocationPopupPage extends BasicPage {
 	public void setLocation(String locationName) {
 		getKeyword().click();
 		String locAttribute = getLocationItem(locationName).getAttribute("data-value");
-		js.executeScript(getLocationInput()+".value"+ "=",locAttribute);
+		js.executeScript("arguments[0].getLocationInput()+".value"+ "=",locAttribute);
 		js.executeScript("arguments[0].click()");
 	}
 	

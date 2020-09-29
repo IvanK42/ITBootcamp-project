@@ -43,7 +43,7 @@ public abstract class BasicTest {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
 
 			FileHandler.copy(ts.getScreenshotAs(OutputType.FILE),
-				new File("/screenshot\\"+ sdf + ".png"));;
+				new File("/screenshot/"+ sdf + ".png"));;
 		} else {
 			System.out.println("SUCCESS!");
 		}
