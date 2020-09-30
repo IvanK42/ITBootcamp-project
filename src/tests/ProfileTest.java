@@ -30,7 +30,7 @@ public class ProfileTest extends BasicTest {
 		
 		this.driver.navigate().to(this.baseUrl + "/member/profile");
 
-		profile.updateLoginInfo("Ivan", "Kostadinovic", "Knjazevacka 123", "061/12345678","18000",  "India" , "Bihar", "Ara");		
+		profile.updateLoginInfo("Test", "Test", "Test 123", "061/12345678","18000",  "India" , "Bihar", "Ara");		
 		Assert.assertEquals(notif.getMessageContent(), "Setup Successful");
 		
 		authPage.logout();

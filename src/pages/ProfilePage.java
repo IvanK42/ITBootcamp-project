@@ -83,11 +83,11 @@ public class ProfilePage extends BasicPage {
 		
 		Select selectCountry = new Select(getCountry());
 		selectCountry.selectByVisibleText(country);
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 
 		Select selectState = new Select(getState());
 		selectState.selectByVisibleText(state);	
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		
 		Select selectCity = new Select(getCity());
 		selectCity.selectByVisibleText(city);
