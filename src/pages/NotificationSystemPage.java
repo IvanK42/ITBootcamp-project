@@ -25,6 +25,6 @@ public class NotificationSystemPage extends BasicPage {
 }
 	
 	public void noMessage() {
-		wait.until(ExpectedConditions.attributeContains((By.xpath("//*[@id=\"frm_fat_id_frmLogin\"]/fieldset[1]/input")), "style", "display: none;"));
+		wait.until(ExpectedConditions.attributeContains((By.xpath("//*[contains(@class, 'system_message')]")), "style", "display: none;"));
 	}	
 }

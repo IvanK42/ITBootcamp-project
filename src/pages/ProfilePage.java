@@ -51,13 +51,13 @@ public class ProfilePage extends BasicPage {
 	}
 	
 	public void uploadClick() {
-		WebElement uploadBtn = this.driver.findElement(By.xpath("//*[@id='profileInfo']/div/div[1]/div/a)"));
+		WebElement uploadBtn = this.driver.findElement(By.xpath("//*[@id=\"profileInfo\"]/div/div[1]/div/a"));
 		js.executeScript("arguments[0].click()", uploadBtn);
 		
 	}
-	public void uploadImg() {
+	public void uploadImg(String image) {
 		WebElement img = this.driver.findElement(By.xpath("//*[@id=\"form-upload\"]/input"));
-		img.sendKeys("/images/ss.png");
+		img.sendKeys(image);
 	}
 	
 	public void removeImg() {
@@ -65,7 +65,7 @@ public class ProfilePage extends BasicPage {
 		js.executeScript("arguments[0].click()", removeBtn);
 	}
 	
-	public void updateLoginInfo(String fname, String lname, String address, String phone, String zip, String country, String state, String city) {
+	public void updateLoginInfo(String fname, String lname, String address, String phone, String zip, String country, String state, String city) throws InterruptedException {
 		getFirstName().clear();
 		getFirstName().sendKeys(fname);
 
@@ -83,16 +83,17 @@ public class ProfilePage extends BasicPage {
 		
 		Select selectCountry = new Select(getCountry());
 		selectCountry.selectByVisibleText(country);
-		
+		Thread.sleep(2000);
+
 		Select selectState = new Select(getState());
 		selectState.selectByVisibleText(state);	
+		Thread.sleep(2000);
 		
 		Select selectCity = new Select(getCity());
 		selectCity.selectByVisibleText(city);
 		
-		getSave().click();
-	
+		js.executeScript("arguments[0].click()", getSave());
+
 	}
-	
 	
 }
