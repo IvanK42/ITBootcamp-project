@@ -2,6 +2,9 @@ package tests;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.JavascriptExecutor;
@@ -38,19 +41,21 @@ public abstract class BasicTest {
 
 	}
 	
-//	@AfterMethod
-//	public void afterTest(ITestResult result) throws WebDriverException, IOException {
-//		driver.manage().deleteAllCookies();
-//		if (result.getStatus() == ITestResult.FAILURE) {
-//			TakesScreenshot ts = (TakesScreenshot) driver;
-//			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
-//
-//			FileHandler.copy(ts.getScreenshotAs(OutputType.FILE),
-//				new File("/screenshots/"+ sdf + ".png"));;
-//		} else {
-//			System.out.println("SUCCESS!");
-//		}
-//	}
+	@AfterMethod
+	public void afterTest(ITestResult result) throws WebDriverException, IOException {
+		driver.manage().deleteAllCookies();
+		if (result.getStatus() == ITestResult.FAILURE) {
+			TakesScreenshot ts = (TakesScreenshot) driver;
+			 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
+			  Date date = new Date();
+			  
+			  String fileName = (dateFormat.format(date)).toString();
+			FileHandler.copy(ts.getScreenshotAs(OutputType.FILE),
+				new File("screenshots/"+ fileName + ".png"));;
+		} else {
+			System.out.println("SUCCESS!");
+		}
+	}
 	
 	@AfterClass
 	public void afterClass() {

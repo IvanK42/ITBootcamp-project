@@ -7,14 +7,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LocationPopupPage extends BasicPage {
-	private JavascriptExecutor js = (JavascriptExecutor) driver;
-
-	
+    private JavascriptExecutor js = (JavascriptExecutor) driver;
 	
 	public LocationPopupPage(WebDriver driver) {
 		super(driver);
 	}
-
 
 	public WebElement getHeaderLocation() {
 		return this.driver.findElement(By.xpath("//*[@id=\"header\"]/div[1]/div/div/div[1]/div/a"));
