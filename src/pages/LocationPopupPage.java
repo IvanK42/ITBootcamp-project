@@ -24,6 +24,7 @@ public class LocationPopupPage extends BasicPage {
 	public WebElement getKeyword() {
 		return this.driver.findElement(By.xpath("//*[@id='locality_keyword']"));
 	}
+	
 	public WebElement getLocationItem(String locationName) {
 		return this.driver.findElement(By.xpath("//li/a[contains(text(), '" + locationName + "')]/.."));
 	}

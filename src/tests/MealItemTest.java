@@ -1,10 +1,18 @@
 package tests;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
+import pages.CartSummaryPage;
 import pages.LocationPopupPage;
 import pages.LoginPage;
 import pages.MealPage;
@@ -23,7 +31,6 @@ public class MealItemTest extends BasicTest {
 		location.clickClose();
 		
 		meal.add("2");
-		
 		
 		Assert.assertEquals(notif.getMessageContent(), "The Following Errors Occurred:"+"\nPlease Select Location");		 											
 		notif.noMessage();
@@ -60,4 +67,41 @@ public class MealItemTest extends BasicTest {
 			
 	}
 	
+	@Test (priority = 10)
+	public void clearCartTest() throws IOException, InterruptedException {
+		
+		this.driver.navigate().to(this.baseUrl + "/meals");
+		LocationPopupPage location = new LocationPopupPage(this.driver);
+		NotificationSystemPage notif = new NotificationSystemPage(this.driver);
+		MealPage meal = new MealPage(this.driver);
+		CartSummaryPage cart = new CartSummaryPage(this.driver);
+		
+		File file = new File("data/Data.xlsx");
+		FileInputStream fis = new FileInputStream(file);
+
+		XSSFWorkbook wb = new XSSFWorkbook(fis);
+		XSSFSheet sheet1 = wb.getSheet("Meals");
+		SoftAssert sAssert = new SoftAssert();
+	
+		location.setLocation("City Center - Albany");
+
+		for (int i = 1; i < sheet1.getLastRowNum(); i++) {
+			XSSFRow row = sheet1.getRow(i);
+
+			XSSFCell cell1 = row.getCell(0);
+			Thread.sleep(500);
+			this.driver.navigate().to(cell1.getStringCellValue());
+
+			meal.add("1");
+			
+			sAssert.assertEquals(notif.getMessageContent(), "Meal Added To Cart");
+		}
+		
+		cart.clearAllFromCart();
+		Assert.assertEquals(notif.getMessageContent(), "All meals removed from Cart successfully");
+		
+		fis.close();
+		wb.close();
+	}
+
 }
