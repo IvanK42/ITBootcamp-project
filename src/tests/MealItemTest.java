@@ -37,6 +37,7 @@ public class MealItemTest extends BasicTest {
 		
 		location.openLocationDialog();
 		location.setLocation("City Center - Albany");
+		//Thread.sleep set for assuring all the elements load 
 		Thread.sleep(500);
 		meal.add("3");
 
@@ -55,6 +56,7 @@ public class MealItemTest extends BasicTest {
 		location.clickClose();
 		
 		meal.favorite();
+		//Thread.sleep set for the message to load 
 		Thread.sleep(500);
 		Assert.assertEquals(notif.getMessageContent(), "Please login first!");
 
@@ -89,6 +91,7 @@ public class MealItemTest extends BasicTest {
 			XSSFRow row = sheet1.getRow(i);
 
 			XSSFCell cell1 = row.getCell(0);
+			//Thread.sleep set for assuring all the elements load 
 			Thread.sleep(500);
 			this.driver.navigate().to(cell1.getStringCellValue());
 

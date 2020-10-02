@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LocationPopupPage extends BasicPage {
 	
@@ -47,7 +46,6 @@ public class LocationPopupPage extends BasicPage {
 		js.executeScript("arguments[0].value=arguments[1]",getLocationInput(), locAttribute);
 		js.executeScript("arguments[0].click()",getSubmit());
 	}
-	
 	
 	public void clickClose() {
 		getClose().click();

@@ -5,7 +5,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ProfilePage extends BasicPage {
 
@@ -83,8 +82,9 @@ public class ProfilePage extends BasicPage {
 		
 		Select selectCountry = new Select(getCountry());
 		selectCountry.selectByVisibleText(country);
+		
+		//Thread.sleep set because select resets without it
 		Thread.sleep(1000);
-
 		Select selectState = new Select(getState());
 		selectState.selectByVisibleText(state);	
 		Thread.sleep(1000);

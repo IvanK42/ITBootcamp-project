@@ -24,8 +24,6 @@ public class SearchResultPages extends BasicPage {
 		} return mealNames;
 	}
 	
-	
-	
 	public int getSearchSize() {
 		return getResults().size();
 	}

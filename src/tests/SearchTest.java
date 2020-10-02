@@ -9,6 +9,8 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -42,13 +44,15 @@ public class SearchTest extends BasicTest {
 			XSSFCell resultsCell = row.getCell(2);
 			
 			int results = (int) (resultsCell.getNumericCellValue());
-
+			
+			//Thread.sleep set for assuring all the elements load 
 			Thread.sleep(500);
 			this.driver.navigate().to(urlCell.getStringCellValue());
 			
 			location.openLocationDialog();
 			location.setLocation(locationCell.getStringCellValue());
 			
+			//Thread.sleep set for for assuring the page with 0 elements isn't skipped
 			Thread.sleep(500);
 			Assert.assertEquals(results, search.getSearchSize());
 				
@@ -57,9 +61,9 @@ public class SearchTest extends BasicTest {
 					"[ERROR] Meal names don't match");
 			}
 		}
+		
 		fis.close();
 		wb.close();
 		sAssert.assertAll();
-
 	}
 }
