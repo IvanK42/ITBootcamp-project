@@ -13,12 +13,14 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 
 public abstract class BasicTest {
 	protected WebDriver driver;
@@ -28,11 +30,19 @@ public abstract class BasicTest {
 	
 	
 	@BeforeClass
-	public void beforeClass() {
-		System.setProperty("webdriver.chrome.driver",
-				"driver-lib\\chromedriver.exe");
+	@Parameters("browser")
+	public void beforeClass(String browser) throws Exception{
+		if(browser.equalsIgnoreCase("firefox")){
+				System.setProperty("webdriver.chrome.driver", 
+						"driver-lib\\firefoxdriver.exe");
+				driver = new FirefoxDriver();
+				
+			}else if(browser.equalsIgnoreCase("chrome")){
+				System.setProperty("webdriver.chrome.driver",
+						"driver-lib\\chromedriver.exe");
+				driver = new ChromeDriver();
+			}
 		
-		this.driver = new ChromeDriver();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		driver.manage().window().maximize();
