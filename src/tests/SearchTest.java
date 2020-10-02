@@ -53,7 +53,8 @@ public class SearchTest extends BasicTest {
 			Assert.assertEquals(results, search.getSearchSize());
 				
 			for (int j = 3; j <results+3; j++) {
-			sAssert.assertTrue((search.mealName().get(j-3).contains(row.getCell(j).getStringCellValue())));
+			sAssert.assertTrue((search.mealName().get(j-3).contains(row.getCell(j).getStringCellValue())),
+					"[ERROR] Meal names don't match");
 			}
 		}
 		fis.close();

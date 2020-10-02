@@ -40,7 +40,7 @@ public class MealItemTest extends BasicTest {
 		Thread.sleep(500);
 		meal.add("3");
 
-		Assert.assertEquals(notif.getMessageContent(), "Meal Added To Cart");
+		Assert.assertEquals(notif.getMessageContent(), "Meal Added To Cart", "[ERROR] Meal not added to cart");
 	}
 	
 	@Test (priority = 5)
@@ -61,9 +61,9 @@ public class MealItemTest extends BasicTest {
 		this.driver.navigate().to(this.baseUrl + "/guest-user/login-form");
 		login.logIn(this.email, this.password);
 
-		this.driver.navigate().to(this.baseUrl + "/meal/lobster-shrimp-chicken-quesadilla-combo");
+		this.driver.navigate().to(this.baseUrl + "/meal/bread-and-chocolate");
 		meal.favorite();
-		Assert.assertEquals(notif.getMessageContent(), "Product has been added to your favorites.");
+		Assert.assertEquals(notif.getMessageContent(), "Product has been added to your favorites.", "[ERROR] Meal not added to favorites");
 			
 	}
 	
@@ -98,7 +98,7 @@ public class MealItemTest extends BasicTest {
 		}
 		
 		cart.clearAllFromCart();
-		Assert.assertEquals(notif.getMessageContent(), "All meals removed from Cart successfully");
+		Assert.assertEquals(notif.getMessageContent(), "All meals removed from Cart successfully", "[ERROR] Cart is not clear");
 		
 		fis.close();
 		wb.close();

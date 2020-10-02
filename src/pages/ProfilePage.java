@@ -8,10 +8,10 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ProfilePage extends BasicPage {
-    private JavascriptExecutor js = (JavascriptExecutor) driver;
 
 	public ProfilePage(WebDriver driver) {
 		super(driver);
+		this.js = (JavascriptExecutor) driver;
 	}
 
 	public WebElement getFirstName() {

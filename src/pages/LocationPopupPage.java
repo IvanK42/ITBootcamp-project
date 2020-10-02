@@ -7,10 +7,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LocationPopupPage extends BasicPage {
-    private JavascriptExecutor js = (JavascriptExecutor) driver;
 	
 	public LocationPopupPage(WebDriver driver) {
 		super(driver);
+		this.js = (JavascriptExecutor) driver;
 	}
 
 	public WebElement getHeaderLocation() {

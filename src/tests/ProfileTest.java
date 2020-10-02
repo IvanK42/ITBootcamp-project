@@ -31,10 +31,10 @@ public class ProfileTest extends BasicTest {
 		this.driver.navigate().to(this.baseUrl + "/member/profile");
 
 		profile.updateLoginInfo("Test", "Test", "Test 123", "061/12345678","18000",  "India" , "Bihar", "Ara");		
-		Assert.assertEquals(notif.getMessageContent(), "Setup Successful");
+		Assert.assertEquals(notif.getMessageContent(), "Setup Successful", "[ERROR] Setup unsuccessful");
 		
 		authPage.logout();
-		Assert.assertEquals(notif.getMessageContent(), "Logout Successfull!");
+		Assert.assertEquals(notif.getMessageContent(), "Logout Successfull!" , "[ERROR] Logout unsuccessful");
 	}
 	
 	@Test (priority = 5)
@@ -49,21 +49,21 @@ public class ProfileTest extends BasicTest {
 		
 		popup.clickClose();
 		login.logIn(this.email, this.password);
-		Assert.assertEquals(notif.getMessageContent(), "Login Successfull");
+		Assert.assertEquals(notif.getMessageContent(), "Login Successfull", "[ERROR] Login unsuccessful");
 		
 		this.driver.navigate().to(this.baseUrl + "/member/profile");
 		String imgPath = new File("images/ss.png").getCanonicalPath();
 		profile.uploadClick();
 		profile.uploadImg(imgPath);
 
-		Assert.assertEquals(notif.getMessageContent(), "Profile Image Uploaded Successfully");
+		Assert.assertEquals(notif.getMessageContent(), "Profile Image Uploaded Successfully" , "[ERROR] Image upload unsuccessful");
 		notif.noMessage();
 		
 		profile.removeImg();
 		notif.noMessage();
 
 		authPage.logout();
-		Assert.assertEquals(notif.getMessageContent(), "Logout Successfull!");
+		Assert.assertEquals(notif.getMessageContent(), "Logout Successfull!", "[ERROR] Logout unsuccessful");
 	}
 
 }
