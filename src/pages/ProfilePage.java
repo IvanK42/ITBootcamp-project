@@ -54,14 +54,21 @@ public class ProfilePage extends BasicPage {
 		js.executeScript("arguments[0].click()", uploadBtn);
 		
 	}
+	
+	public WebElement imgInput() {
+		return this.driver.findElement(By.xpath("//*[@id=\"form-upload\"]/input"));
+	}
+	
 	public void uploadImg(String image) {
-		WebElement img = this.driver.findElement(By.xpath("//*[@id=\"form-upload\"]/input"));
-		img.sendKeys(image);
+		imgInput().sendKeys(image);
+	}
+	
+	public WebElement removeBtn() {
+		return this.driver.findElement(By.xpath("//*[@id=\"profileInfo\"]/div/div[1]/div/a[2]"));
 	}
 	
 	public void removeImg() {
-		WebElement removeBtn = this.driver.findElement(By.xpath("//*[@id=\"profileInfo\"]/div/div[1]/div/a[2]"));
-		js.executeScript("arguments[0].click()", removeBtn);
+		js.executeScript("arguments[0].click()", removeBtn());
 	}
 	
 	public void updateLoginInfo(String fname, String lname, String address, String phone, String zip, String country, String state, String city) throws InterruptedException {
